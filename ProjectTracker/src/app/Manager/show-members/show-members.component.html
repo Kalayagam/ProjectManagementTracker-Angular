@@ -1,0 +1,130 @@
+<!-- Button trigger modal -->
+<div class="row" *ngIf="errormessage">
+    <h5 class="text-danger" style="padding-left:20px">{{errormessage}}</h5>
+</div>
+
+<div *ngIf="!errormessage">
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height:fit-content">
+                    <app-add-members [dep]="dep" *ngIf="ActivateAddUpdateMemberComp"></app-add-members>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <app-update-allocation [dep]="dep" *ngIf="ActivateAddUpdateMemberComp"></app-update-allocation>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <app-assign-task [dep]="dep" *ngIf="ActivateAddUpdateMemberComp"></app-assign-task>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Member Name</th>
+                <th>Member ID</th>
+                <th>YearsofExperience</th>
+                <th>Description</th>
+                <th>ProjectStartDate</th>
+                <th>ProjectEndDate</th>
+                <th>Skillset</th>
+                <th>Allocation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dataItem of GetTeamMembersList">
+                <td>{{dataItem.name}}</td>
+                <td>{{dataItem.mID}}</td>
+                <td>{{dataItem.yearsofExperience}}</td>
+                <td>{{dataItem.description}}</td>
+                <td>{{dataItem.projectStartDate | date : 'yyyy-MM-dd' }}</td>
+                <td>{{dataItem.projectEndDate | date : 'yyyy-MM-dd'}}</td>
+                <td>{{dataItem.skillSet}}</td>
+                <td>{{dataItem.allocation}}</td>
+            </tr>
+        </tbody>
+
+        <!--table class="table table-striped">
+        <tbody>
+            <tr>
+                <td> <button type="button" class="btn btn-primary float-left m-2" data-toggle="modal"
+                        data-target="#staticBackdrop1" (click)="addClick()">
+                        Add Team Member Details
+                    </button></td>
+                <td> <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal"
+                        data-target="#staticBackdrop2" (click)="editClick()">Update Allocation</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal"
+                        data-target="#staticBackdrop3" (click)="assignClick()">Update Allocation</button>
+                </td>
+            </tr>
+        </tbody>
+    </table-->
+        <div class="container">
+            <div class="buttonrow" style="display:flex;margin-right:-15px;margin-left:-15px;">
+                <div class="col-12 col-md-6">
+                    <form>
+                        <button class="btn btn-primary btn-xl" type="button" data-toggle="modal"
+                            data-target="#staticBackdrop1" (click)="addClick()">Add Member Details </button>
+                    </form>
+                </div>
+                <div class="col-12 col-md-6">
+                    <form>
+                        <button class="btn btn-primary btn-xl" type="button" data-toggle="modal"
+                            data-target="#staticBackdrop2" (click)="editClick()">Update Allocation</button>
+                    </form>
+                </div>
+                <div class="col-12 col-md-6">
+                    <form>
+                        <button class="btn btn-primary btn-xl" type="button" data-toggle="modal"
+                            data-target="#staticBackdrop3" (click)="assignClick()">Assign Task to Member</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </table>
+
+</div>

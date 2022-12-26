@@ -1,0 +1,20 @@
+<div class="container">
+    <form #userForm="ngForm" (ngSubmit)="updateAllocationPercentage()">
+        <div class="row">
+
+            <label class="mt-2 mb-2 col-form-label">Click the button to update allocation percentage of all
+                members:</label>
+            <div class="buttonrow" style="display:flex;margin-right:-15px;margin-left:-15px;padding-left: 30px;">
+                <div>
+                    <button [disabled]="userForm.form.invalid" class="btn btn-primary btn-xl">Update </button>
+                </div>
+            </div>
+            <div class="alert alert-success" style="float:left" role="alert" *ngIf="successModal">Allocation is updated
+                Successfully!
+            </div>
+            <div class="alert alert alert-danger" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+        </div>
+        <div>
+        </div>
+    </form>
+</div>

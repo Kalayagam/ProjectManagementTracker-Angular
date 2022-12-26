@@ -1,0 +1,64 @@
+<div class="alert alert alert-danger" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+<div *ngIf="!errormessage">
+    <div class="form-froup row">
+
+        <label class="col-sm-2 col-form-label  col-form-label label-default">Enter Team Member ID</label>
+        <div class="col-sm-5">
+            <input type="number" class="form-control" required #mID="ngModel" name="mID"
+                [class.is-invalid]=" mID.invalid && mID.touched" pattern="^[0-9]{6}$" [(ngModel)]="viewmemberModel.mID"
+                placeholder="Enter Team Member ID" formControlname="mID">
+            <div *ngIf="mID.errors && (mID.invalid && mID.touched)">
+                <small class="text-danger" *ngIf="mID.errors['required']">*ID is required</small>
+                <small class="text-danger" *ngIf="mID.errors['pattern']">*Enter ID of length 6 characters</small>
+            </div>
+
+        </div>
+
+
+        <div class="col-12 col-md-6">
+            <form>
+                <button class="btn btn-primary btn-xl" type="button" data-toggle="modal"
+                    data-target=".viewMemberDetails" (click)="ViewMemberDetails(viewmemberModel.mID)">View Task
+                    Details</button>
+            </form>
+        </div>
+    </div>
+    <div></div>
+    <div></div>
+    <div class="container">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" *ngFor="let dataItem of GetMemberData">
+                    <tbody>
+                        <tr>
+                            <td>Member ID </td>
+                            <td> {{dataItem.mID}}</td>
+                        </tr>
+                        <tr>
+                            <td>Member Name </td>
+                            <td> {{dataItem.memberName}} </td>
+                        </tr>
+                        <tr>
+                            <td>Member Task</td>
+                            <td>{{dataItem.taskName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deliverables </td>
+                            <td> {{dataItem.deliverables}}</td>
+                        </tr>
+                        <tr>
+                            <td>Task Start Date </td>
+                            <td> {{dataItem.taskStartDate | date : 'yyyy-MM-dd'}}</td>
+                        </tr>
+                        <tr>
+                            <td>Task End Date </td>
+                            <td> {{dataItem.taskEndDate| date : 'yyyy-MM-dd'}}
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
